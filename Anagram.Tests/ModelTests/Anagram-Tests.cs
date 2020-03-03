@@ -11,8 +11,8 @@ namespace Anagram.TestTools
         [TestMethod]
         public void AnagramChecker_CheckIfLengthIsEqual_True()
         {
-            List<string> optionArr = new List<string>{"wrod", "worde", "some"};
-            UserInput newUserInput = new UserInput("word", optionArr);
+            List<string> optionList = new List<string>{"wrod", "worde", "some"};
+            UserInput newUserInput = new UserInput("word", optionList);
             List<string> tempList = new List<string> {"wrod", "some"};
             newUserInput.AnagramChecker();
             CollectionAssert.AreEqual(tempList, newUserInput.LengthList);
