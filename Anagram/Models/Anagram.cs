@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Diagnostics;
+using System.IO;
+
 
 namespace Anagram.Models
 {
@@ -23,8 +27,8 @@ namespace Anagram.Models
             _anagramList.Clear();
         }
 
-        public void AnagramChecker()
-        {
+        public void LengthChecker()
+        {   
             foreach (string option in OptionList)
             {
                 if (RootWord.Length == option.Length)
@@ -32,8 +36,11 @@ namespace Anagram.Models
                     LengthList.Add(option);
                 }
             }
-
-            foreach (string word in LengthList)
+        }   
+        
+        public void AnagramChecker(List<string> list)
+        {
+            foreach (string word in list)
             {
                 char[] mainArray = RootWord.ToCharArray();
                 char[] tempArray = word.ToCharArray();
@@ -50,6 +57,27 @@ namespace Anagram.Models
         public static List<string> GetAll()
         {
             return _anagramList;
+        }
+
+        public List<string> lines = File.ReadAllLines("/Users/Guest/Desktop/Anagram.Solution/newDictionary.txt").ToList();
+
+        public void WordMatch(string inputWord)
+        {
+            List<string> newList = new List<string>{};
+            foreach (string item in lines)
+            {
+                if (item.Length == inputWord.Length)
+                {
+                    newList.Add(item);
+                }
+            }
+            AnagramChecker(newList);
+        }
+
+    public void CheckAgainstList()
+        {
+            LengthChecker();
+            AnagramChecker(LengthList);
         }
     }
 }

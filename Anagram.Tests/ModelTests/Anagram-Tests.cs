@@ -2,6 +2,9 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Anagram.Models;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Diagnostics;
 
 
 namespace Anagram.TestTools
@@ -20,7 +23,7 @@ namespace Anagram.TestTools
             List<string> optionList = new List<string>{"wrod", "worde", "some"};
             UserInput newUserInput = new UserInput("word", optionList);
             List<string> tempList = new List<string> {"wrod", "some"};
-            newUserInput.AnagramChecker();
+            newUserInput.LengthChecker();
             CollectionAssert.AreEqual(tempList, newUserInput.LengthList);
         }
 
@@ -30,8 +33,19 @@ namespace Anagram.TestTools
             List<string> optionList = new List<string>{"wrod", "worde", "some"};
             UserInput newUserInput = new UserInput("word", optionList);
             List<string> tempList = new List<string> {"wrod"};
-            newUserInput.AnagramChecker();
+            newUserInput.LengthChecker();
+            newUserInput.AnagramChecker(newUserInput.LengthList);
             CollectionAssert.AreEqual(tempList, UserInput.GetAll());
+        }
+
+        [TestMethod]
+        public void WordBook_CheckIfLength_True()
+        {
+            List<string> optionList = new List<string>{"wrod", "worde", "some"};
+            List<string> tempList = new List<string>{"act", "cat"};
+            UserInput newUserInput = new UserInput("cat", optionList);
+            newUserInput.WordMatch(newUserInput.RootWord);
+            CollectionAssert.AreEqual(tempList, UserInput._anagramList);
         }
     }
 }
