@@ -73,8 +73,19 @@ namespace Anagram.Models
             }
             AnagramChecker(newList);
         }
+        public void WordContain(string inputWord)
+        {
+            List<string> newList = new List<string>{};
+            foreach (string item in lines)
+            {
+                if (item.Contains(inputWord))
+                {
+                    _anagramList.Add(item);
+                }
+            }
+        }
 
-    public void CheckAgainstList()
+        public void CheckAgainstList()
         {
             LengthChecker();
             AnagramChecker(LengthList);

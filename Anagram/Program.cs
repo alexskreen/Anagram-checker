@@ -15,8 +15,18 @@ public class Program
         string response = Console.ReadLine();
         if (response == "dictionary")
         {
-            newUser.WordMatch(newUser.RootWord);
-            WriteOutput();
+            Console.WriteLine("Do you want to check for exact letter matches or for words that contain the initial word?");
+            string response2 = Console.ReadLine();
+            if (response2 == "contain")
+            {
+                newUser.WordContain(newUser.RootWord);
+                WriteOutput();
+            }
+            else
+            {
+                newUser.WordMatch(newUser.RootWord);
+                WriteOutput();
+            }
         }
         else if (response == "list")
         {
